@@ -76,9 +76,7 @@ function displayImages(images) {
     )
     .join('');
   galleryDiv.insertAdjacentHTML('beforeend', markup);
-  new SimpleLightbox('.gallery a', {
-    /* opcje */
-  });
+  new SimpleLightbox('.gallery a', {});
 }
 
 function clearGallery() {
