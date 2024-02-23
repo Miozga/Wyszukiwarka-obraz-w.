@@ -1,13 +1,3 @@
-body {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-}
-
 .search-form {
   display: flex;
   flex-direction: column;
