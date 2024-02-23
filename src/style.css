@@ -44,3 +44,31 @@
 .info-item b {
   font-weight: 600;
 }
+
+h1 {
+  margin-bottom: 20px; /* Dodaje odstęp między nagłówkiem a formularzem */
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 33%;
+  gap: 10px;
+}
+
+.search-form input,
+.search-form button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search-form button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
