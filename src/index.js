@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { Buffer } from 'buffer';
+window.Buffer = Buffer;
+
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
