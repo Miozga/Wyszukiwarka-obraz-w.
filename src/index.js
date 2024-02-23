@@ -81,3 +81,12 @@ function clearGallery() {
   galleryDiv.innerHTML = '';
   loadMoreBtn.style.display = 'none';
 }
+
+if (galleryDiv.querySelector('.simple-lightbox')) {
+  var lightbox = SimpleLightbox('.gallery a');
+  lightbox.refresh();
+} else {
+  new SimpleLightbox('.gallery a', {
+    /* opcje */
+  });
+}
