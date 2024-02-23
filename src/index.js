@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { Buffer } from 'buffer';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+window.Buffer = Buffer;
 
 const form = document.querySelector('.search-form');
 const galleryDiv = document.querySelector('.gallery');
