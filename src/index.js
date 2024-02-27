@@ -1,7 +1,4 @@
 import axios from 'axios';
-import { Buffer } from 'buffer';
-window.Buffer = Buffer;
-
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -12,6 +9,7 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let currentPage = 1;
 let searchQuery = '';
+let totalHits = 0;
 let lightbox;
 
 form.addEventListener('submit', handleSearch);
@@ -20,7 +18,6 @@ loadMoreBtn.addEventListener('click', fetchImages);
 async function handleSearch(event) {
   event.preventDefault();
   searchQuery = event.currentTarget.elements.searchQuery.value.trim();
-  currentPage = 1;
   if (!searchQuery) {
     Notiflix.Notify.failure('Proszę wpisać zapytanie wyszukiwania.');
     return;
@@ -38,6 +35,8 @@ async function fetchImages() {
   try {
     const response = await axios.get(URL);
     const images = response.data.hits;
+    totalHits = response.data.totalHits;
+
     if (images.length === 0) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -45,11 +44,17 @@ async function fetchImages() {
       return;
     }
     displayImages(images);
-    Notiflix.Notify.success(
-      `Hooray! We found ${response.data.totalHits} images.`
-    );
-    loadMoreBtn.style.display = 'block';
+    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
     currentPage += 1;
+
+    if ((currentPage - 1) * 40 >= totalHits) {
+      loadMoreBtn.style.display = 'none';
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
+    } else {
+      loadMoreBtn.style.display = 'block';
+    }
   } catch (error) {
     console.error(error);
     Notiflix.Notify.failure(
@@ -76,7 +81,6 @@ function displayImages(images) {
     .join('');
   galleryDiv.insertAdjacentHTML('beforeend', markup);
 
-  // Odśwież lub utwórz instancję SimpleLightbox
   if (lightbox) {
     lightbox.refresh();
   } else {
@@ -87,4 +91,6 @@ function displayImages(images) {
 function clearGallery() {
   galleryDiv.innerHTML = '';
   loadMoreBtn.style.display = 'none';
+  currentPage = 1;
+  totalHits = 0;
 }
