@@ -5,7 +5,6 @@ window.Buffer = Buffer;
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-window.Buffer = Buffer;
 
 const form = document.querySelector('.search-form');
 const galleryDiv = document.querySelector('.gallery');
@@ -13,13 +12,14 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let currentPage = 1;
 let searchQuery = '';
+let lightbox;
 
 form.addEventListener('submit', handleSearch);
 loadMoreBtn.addEventListener('click', fetchImages);
 
 async function handleSearch(event) {
   event.preventDefault();
-  searchQuery = event.currentTarget.elements.searchQuery.value;
+  searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   currentPage = 1;
   if (!searchQuery) {
     Notiflix.Notify.failure('Proszę wpisać zapytanie wyszukiwania.');
@@ -45,7 +45,6 @@ async function fetchImages() {
       return;
     }
     displayImages(images);
-    SimpleLightbox.refresh();
     Notiflix.Notify.success(
       `Hooray! We found ${response.data.totalHits} images.`
     );
@@ -76,19 +75,16 @@ function displayImages(images) {
     )
     .join('');
   galleryDiv.insertAdjacentHTML('beforeend', markup);
-  new SimpleLightbox('.gallery a', {});
+
+  // Odśwież lub utwórz instancję SimpleLightbox
+  if (lightbox) {
+    lightbox.refresh();
+  } else {
+    lightbox = new SimpleLightbox('.gallery a');
+  }
 }
 
 function clearGallery() {
   galleryDiv.innerHTML = '';
   loadMoreBtn.style.display = 'none';
-}
-
-if (galleryDiv.querySelector('.simple-lightbox')) {
-  var lightbox = SimpleLightbox('.gallery a');
-  lightbox.refresh();
-} else {
-  new SimpleLightbox('.gallery a', {
-    /* opcje */
-  });
 }
