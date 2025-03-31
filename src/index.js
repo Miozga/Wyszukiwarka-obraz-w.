@@ -23,6 +23,7 @@ async function handleSearch(event) {
     return;
   }
   clearGallery();
+  currentPage = 1;
   fetchImages();
 }
 
@@ -39,18 +40,18 @@ async function fetchImages() {
 
     if (images.length === 0) {
       Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
+        'Przykro nam nie ma takich obrazów, postaraj się jeszcze raz.'
       );
       return;
     }
     displayImages(images);
-    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+    Notiflix.Notify.success(`Hooray! Znaleźliśmy ${totalHits} obrazów.`);
     currentPage += 1;
 
     if ((currentPage - 1) * 40 >= totalHits) {
       loadMoreBtn.style.display = 'none';
       Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
+        'Przepraszamy, ale osiągnąłeś koniec wyników wyszukiwania.'
       );
     } else {
       loadMoreBtn.style.display = 'block';
