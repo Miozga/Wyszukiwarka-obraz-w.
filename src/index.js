@@ -49,33 +49,33 @@ async function fetchImages() {
 
     if ((currentPage - 1) * 40 >= totalHits) {
       loadMoreBtn.style.display = 'none';
-      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results."
+      );
     } else {
       loadMoreBtn.style.display = 'block';
     }
-
   } catch (error) {
     console.error(error);
     Notiflix.Notify.failure(
       'Wystąpił błąd podczas wyszukiwania obrazów. Spróbuj ponownie.'
     );
   }
-
+}
 
 function displayImages(images) {
   const markup = images
     .map(
       img => `
-    <div class="photo-card">
-      <a href="${img.largeImageURL}"><img src="${img.webformatURL}" alt="${img.tags}" loading="lazy" /></a>
-      <div class="info">
-        <p class="info-item"><b>Likes</b> ${img.likes}</p>
-        <p class="info-item"><b>Views</b> ${img.views}</p>
-        <p class="info-item"><b>Comments</b> ${img.comments}</p>
-        <p class="info-item"><b>Downloads</b> ${img.downloads}</p>
-      </div>
-    </div>
-  `
+        <div class="photo-card">
+          <a href="${img.largeImageURL}"><img src="${img.webformatURL}" alt="${img.tags}" loading="lazy" /></a>
+          <div class="info">
+            <p class="info-item"><b>Likes</b> ${img.likes}</p>
+            <p class="info-item"><b>Views</b> ${img.views}</p>
+            <p class="info-item"><b>Comments</b> ${img.comments}</p>
+            <p class="info-item"><b>Downloads</b> ${img.downloads}</p>
+          </div>
+        </div>`
     )
     .join('');
   galleryDiv.insertAdjacentHTML('beforeend', markup);
@@ -84,7 +84,6 @@ function displayImages(images) {
     lightbox = new SimpleLightbox('.gallery a');
   }
   lightbox.refresh();
-
 }
 
 function clearGallery() {

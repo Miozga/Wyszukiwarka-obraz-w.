@@ -1,18 +1,133 @@
+/* Styl dla body */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  text-transform: uppercase;
+}
+
+/* Styl dla nagłówka */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styl dla sekcji wyszukiwania */
+.search {
+  position: fixed; /* Sekcja jest przyklejona do okna */
+  top: 0; /* Przyklejona do górnej krawędzi */
+  left: 0; /* Przyklejona do lewej krawędzi */
+  width: 100%; /* Zajmuje całą szerokość okna */
+  height: 20vw; /* Wysokość 20% szerokości okna */
+  background-color: white; /* Białe tło */
+  display: flex;
+  flex-direction: column; /* Ustawienie elementów w kolumnie */
+  justify-content: center; /* Wyrównanie elementów pionowo */
+  align-items: center; /* Wyśrodkowanie elementów */
+  z-index: 10; /* Formularz nad galerią */
+  padding: 1rem 0; /* Padding na górze i dole */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Cień na formularzu */
+}
+
+/* Styl dla formularza */
+.search-form {
+  width: 80%; /* Formularz ma 80% szerokości sekcji */
+  max-width: 500px; /* Maksymalna szerokość formularza */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styl dla inputa */
+.search-form input {
+  font-size: 1.8rem;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  width: 100%; /* Wypełnia całą szerokość formularza */
+}
+
+/* Styl dla przycisku */
+.search-form button {
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #00aaff;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Efekt 3D dla przycisku po kliknięciu */
+.search-form button:active {
+  transform: translateY(4px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Zmiana koloru przycisku po kliknięciu */
+.search-form button:active {
+  background-color: #32cd32;
+  color: white;
+  border-color: #32cd32;
+}
+
+/* Styl dla galerii */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
-  margin: 0 auto;
+  margin-top: 20vw; /* Przesunięcie galerii poniżej formularza */
   max-width: 100%;
 }
 
+/* Styl dla zdjęć w galerii */
 .photo-card img {
   width: 100%;
   height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  font-size: 2rem, bold;
-  color: blue;
+/* Styl dla przycisku "Load more" */
+.load-more {
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: #00aaff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: none;
+  margin: 20px auto;
+}
+
+.load-more:hover {
+  background-color: #32cd32;
+}
+
+/* Styl dla powiadomień */
+.notiflix-notify {
+  font-size: 1.4rem;
+}
+
+/* Styl responsywny dla małych ekranów */
+@media (max-width: 600px) {
+  .search-form input,
+  .search-form button {
+    width: 90%;
+  }
+}
+
+form {
+  background-color: aliceblue;
 }

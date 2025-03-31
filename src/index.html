@@ -11,25 +11,29 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Wyszukiwarka obrazów</h1>
-    <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div class="search">
+      <h1>Wyszukiwarka obrazów</h1>
+      <form class="search-form" id="search-form">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
-    <div class="gallery"></div>
-    <button type="button" class="load-more" style="display: none">
-      Load more
-    </button>
+    <div class="gallery">
+      <button type="button" class="load-more" style="display: none">
+        Load more
+      </button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.10.3/simple-lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/notiflix/3.2.5/notiflix-aio-3.2.5.min.js"></script>
+    <!-- Reference your JavaScript file here -->
     <script type="module" src="index.js"></script>
   </body>
 </html>
