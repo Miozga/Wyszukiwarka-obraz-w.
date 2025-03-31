@@ -7,9 +7,12 @@
   max-width: 100%;
 }
 
-/*.photo-card {}*/
-
 .photo-card img {
   width: 100%;
   height: auto;
+}
+
+h1 {
+  font-size: 2rem, bold;
+  color: blue;
 }

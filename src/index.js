@@ -49,19 +49,18 @@ async function fetchImages() {
 
     if ((currentPage - 1) * 40 >= totalHits) {
       loadMoreBtn.style.display = 'none';
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results."
-      );
+      Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
     } else {
       loadMoreBtn.style.display = 'block';
     }
+
   } catch (error) {
     console.error(error);
     Notiflix.Notify.failure(
       'Wystąpił błąd podczas wyszukiwania obrazów. Spróbuj ponownie.'
     );
   }
-}
+
 
 function displayImages(images) {
   const markup = images
@@ -81,11 +80,11 @@ function displayImages(images) {
     .join('');
   galleryDiv.insertAdjacentHTML('beforeend', markup);
 
-  if (lightbox) {
-    lightbox.refresh();
-  } else {
+  if (!lightbox) {
     lightbox = new SimpleLightbox('.gallery a');
   }
+  lightbox.refresh();
+
 }
 
 function clearGallery() {
